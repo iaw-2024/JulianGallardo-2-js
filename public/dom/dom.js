@@ -1,4 +1,4 @@
-fetch('dom/people.json')
+fetch('people.json')
     .then(response => response.json())
     .then(data => {
         // Process the data and create the table

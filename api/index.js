@@ -38,14 +38,13 @@ app.get("/cliente_servidor", (req, res) => {
 });
 app.use(express.static('public'));
 app.use(express.static('cliente_servidor'));
+app.use(express.static('api'));
+app.use(express.static('express'));
+
 app.set('view engine', 'ejs');
 
 
 app.listen(3001, () => console.log("Server ready on port 3001."));
-
-module.exports = app;
-
-
 
 
 
@@ -75,3 +74,13 @@ function parsearDatosJson(personJSON) {
     datosSeleccionados.push(personJSON.films.length);
     return datosSeleccionados;
 }
+
+
+
+
+module.exports = app;
+
+
+
+
+

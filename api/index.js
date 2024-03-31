@@ -13,7 +13,7 @@ app.get("/express", (req, res) => {
         }
         const jsonData = JSON.parse(data);
         const dataTable = createTable(jsonData);
-        res.render('../express/listado_tailwind.ejs', {data: dataTable});
+        res.render('../express/index.ejs', {data: dataTable});
     });
 });
 app.get("/api", (req, res) => {

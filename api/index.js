@@ -36,19 +36,21 @@ function parsearDatosJson(personJSON) {
 
 
 app.get("/express", (req, res) => {
-    fs.readFile('api/people.json', 'utf8', (err, data) => {
-
+    var direccion = path.join(__dirname, '../api/people.json');
+    fs.readFile(direccion, 'utf8', (err, data) => {
         if (err) {
             console.error(err);
             return;
         }
         const jsonData = JSON.parse(data);
         const dataTable = createTable(jsonData);
-        res.render('express/index.ejs', {data: dataTable});
+        direccion = path.join(__dirname, '../express/index.ejs');
+        res.render(direccion, {data: dataTable});
     });
 });
 app.get("/api", (req, res) => {
-    fs.readFile('api/people.json', 'utf8', (err, data) => {
+    const direccion = path.join(__dirname, '../api/people.json');
+    fs.readFile(direccion, 'utf8', (err, data) => {
         if (err) {
             console.error(err);
             return;
@@ -58,7 +60,8 @@ app.get("/api", (req, res) => {
 });
 
 app.get("/cliente_servidor", (req, res) => {
-    fs.readFile('cliente_servidor/index.html', 'utf8', (err, data) => {
+    const direccion = path.join(__dirname, '../cliente_servidor/index.html');
+    fs.readFile(direccion, 'utf8', (err, data) => {
 
         if (err) {
             console.error(err);
@@ -67,9 +70,8 @@ app.get("/cliente_servidor", (req, res) => {
         res.send(data);
     });
 });
-app.use(express.static('public'));
+app.use(express.static('public')); 
 app.use(express.static('cliente_servidor'));
-app.use(express.static('api'));
 app.use(express.static('express'));
 app.set('views', path.join(__dirname, '/..'));
 app.set('view engine', 'ejs');

@@ -1,4 +1,4 @@
-fetch('people.json')
+fetch('dom/people.json')
     .then(response => response.json())
     .then(data => {
         // Process the data and create the table
@@ -59,10 +59,8 @@ async function parsearDatosJson(personJSON) {
     datosSeleccionados.push(personJSON.name);
     datosSeleccionados.push(personJSON.birth_year);
     var planeta = await parsearPlanetaOrigen(personJSON.homeworld);
-    console.log(planeta)
     datosSeleccionados.push(planeta);
     var especie = await parsearEspecie(personJSON.species);
-    console.log(especie)
     datosSeleccionados.push((personJSON.species.length > 0) ? especie : "Desconocida");
     datosSeleccionados.push(personJSON.films.length);
     return datosSeleccionados;

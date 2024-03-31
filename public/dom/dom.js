@@ -24,7 +24,6 @@ async function createTable(data) {
     headersSeleccionados.forEach(header => {
         const cell = document.createElement('th');
         cell.scope = "col";
-
         cell.textContent = header;
         headerRow.appendChild(cell);
     });

@@ -1,7 +1,16 @@
 const path = require('path');
-const fs = require('fs');
 const express = require('express');
+
+import { fileURLToPath } from 'url';
+import peopleJSON from './people.json';
+
+
+
 const app = express();
+app.use(express.static('public')); 
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, '../views'));
+
 
 
 function createTable(data) {
@@ -22,7 +31,6 @@ function createTable(data) {
     return datosADevolver;
 }
 
-
 function parsearDatosJson(personJSON) {
     var datosSeleccionados = [];
     datosSeleccionados.push(personJSON.name);
@@ -31,59 +39,15 @@ function parsearDatosJson(personJSON) {
     return datosSeleccionados;
 }
 
-
-
-
-
 app.get("/express", (req, res) => {
-    var direccion = path.join(__dirname, '../api/people.json');
-    fs.readFile(direccion, 'utf8', (err, data) => {
-        if (err) {
-            console.error(err);
-            return;
-        }
-        const jsonData = JSON.parse(data);
-        const dataTable = createTable(jsonData);
-        direccion = path.join(__dirname, '../express/index.ejs');
-        res.render(direccion, {data: dataTable});
-    });
-});
-app.get("/api", (req, res) => {
-    const direccion = path.join(__dirname, '../api/people.json');
-    fs.readFile(direccion, 'utf8', (err, data) => {
-        if (err) {
-            console.error(err);
-            return;
-        }
-        res.send(data);
-    });
+    res.render("express/express_listado", { data: createTable(peopleJSON) });
 });
 
-app.get("/cliente_servidor", (req, res) => {
-    const direccion = path.join(__dirname, '../cliente_servidor/index.html');
-    fs.readFile(direccion, 'utf8', (err, data) => {
 
-        if (err) {
-            console.error(err);
-            return;
-        }
-        res.send(data);
-    });
-});
-app.use(express.static('public')); 
-app.use(express.static('cliente_servidor'));
-app.use(express.static('express'));
-app.set('views', path.join(__dirname, '/'));
-app.set('view engine', 'ejs');
+app.get("/api", (req, res) => res.send(peopleJSON));
 
 
 app.listen(3001, () => console.log("Server ready on port 3001."));
-
-
-
-
-
-
 
 
 module.exports = app;

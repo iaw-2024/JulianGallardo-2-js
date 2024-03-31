@@ -73,7 +73,7 @@ app.get("/cliente_servidor", (req, res) => {
 app.use(express.static('public')); 
 app.use(express.static('cliente_servidor'));
 app.use(express.static('express'));
-app.set('views', path.join(__dirname, '/..'));
+app.set('views', path.join(__dirname, '/'));
 app.set('view engine', 'ejs');
 
 

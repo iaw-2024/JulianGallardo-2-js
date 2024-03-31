@@ -1,54 +1,7 @@
-const express = require("express");
 const path = require('path');
-const app = express();
 const fs = require('fs');
-
-
-
-app.get("/express", (req, res) => {
-    fs.readFile('api/people.json', 'utf8', (err, data) => {
-
-        if (err) {
-            console.error(err);
-            return;
-        }
-        const jsonData = JSON.parse(data);
-        const dataTable = createTable(jsonData);
-        res.render('../express/index.ejs', {data: dataTable});
-    });
-});
-app.get("/api", (req, res) => {
-    fs.readFile('api/people.json', 'utf8', (err, data) => {
-        if (err) {
-            console.error(err);
-            return;
-        }
-        res.send(data);
-    });
-});
-
-app.get("/cliente_servidor", (req, res) => {
-    fs.readFile('cliente_servidor/index.html', 'utf8', (err, data) => {
-
-        if (err) {
-            console.error(err);
-            return;
-        }
-        res.send(data);
-    });
-});
-app.use(express.static('public'));
-app.use(express.static('cliente_servidor'));
-app.use(express.static('api'));
-app.use(express.static('express'));
-app.set('views', path.join(__dirname, '../views'));
-
-
-app.set('view engine', 'ejs');
-
-
-app.listen(3001, () => console.log("Server ready on port 3001."));
-
+const express = require('express');
+const app = express();
 
 
 function createTable(data) {
@@ -77,6 +30,56 @@ function parsearDatosJson(personJSON) {
     datosSeleccionados.push(personJSON.films.length);
     return datosSeleccionados;
 }
+
+
+
+
+
+app.get("/express", (req, res) => {
+    fs.readFile('api/people.json', 'utf8', (err, data) => {
+
+        if (err) {
+            console.error(err);
+            return;
+        }
+        const jsonData = JSON.parse(data);
+        const dataTable = createTable(jsonData);
+        res.render('express/index.ejs', {data: dataTable});
+    });
+});
+app.get("/api", (req, res) => {
+    fs.readFile('api/people.json', 'utf8', (err, data) => {
+        if (err) {
+            console.error(err);
+            return;
+        }
+        res.send(data);
+    });
+});
+
+app.get("/cliente_servidor", (req, res) => {
+    fs.readFile('cliente_servidor/index.html', 'utf8', (err, data) => {
+
+        if (err) {
+            console.error(err);
+            return;
+        }
+        res.send(data);
+    });
+});
+app.use(express.static('public'));
+app.use(express.static('cliente_servidor'));
+app.use(express.static('api'));
+app.use(express.static('express'));
+app.set('views', path.join(__dirname, '/..'));
+app.set('view engine', 'ejs');
+
+
+app.listen(3001, () => console.log("Server ready on port 3001."));
+
+
+
+
 
 
 

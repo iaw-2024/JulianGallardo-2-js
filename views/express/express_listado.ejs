@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personajes de Star Wars</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+
+</head>
+
+
+
+<body class="bg-white dark:bg-gray-800" style="background-image: url('https://i.blogs.es/2cc78a/ordenstarwars/1366_2000.jpg');"></body>
+
+
+  <nav class="bg-gray-800 text-white  w-full justify-items-center ">
+    <div class="container py-2 grid grid-cols-2 sm:flex sm:flex-row text-center justify-items-center whitespace-nowrap mx-auto overflow-hidden">
+      <div class="container py-2 grid grid-cols-2 sm:flex sm:flex-row text-center justify-items-center whitespace-nowrap mx-auto overflow-hidden">
+        <a href="/dom"
+          class="px-4 py-2 text-sm md:text-2xl  text-white dark:text-white hover:bg-gray-100 hover:text-gray-700 dark:hover:bg-gray-700">DOM</a>
+        <a href="/cliente_servidor"
+          class="px-4 py-2 text-sm md:text-2xl text-white dark:text-white hover:bg-gray-100 hover:text-gray-700 dark:hover:bg-gray-700">Cliente Servidor</a>
+      </div>
+    </div>
+  </nav>
+  
+  
+
+  <h1 class="text-center text-white text-shadow-lg text-shadow-offset-x-10 font-bold mt-5 mb-5 hover:text-yellow-400 text-4xl">Personajes de Star Wars</h1>
+
+  <div class="container px-auto mb-4 overflow-x-auto align-items-center mx-auto" id="containerTabla">
+    <table class="table table-striped table-bordered w-1x2  sm:w-full shadow-md rounded-lg bg-gray-800 bg-opacity-90 text-white mx-auto">
+      <thead class="text-xs md:text-2x1 bg-gray-500 uppercase">
+        <tr>
+          <th scope="col" class=" px-3 py-2 text-xs md:text-xl md:px-6 md:py-4">Nombre</th>
+          <th scope="col" class=" px-3 py-2 text-xs md:text-xl md:px-6 md:py-4">Año de nacimiento</th>
+          <th scope="col" class=" px-3 py-2 text-xs md:text-xl md:px-6 md:py-4">Apariciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for (var i = 0; i < data.length;i++) { %>
+          <tr class="border-b  text-center">
+            <td class=" px-auto py-auto text-xs md:text-xl md:px-6 md:py-4 md:px-6 py-4"><%= data[i][0] %></td>
+            <td class=" px-auto py-auto text-xs md:text-xl md:px-6 md:py-4"><%= data[i][1] %></td>
+            <td class=" px-auto py-auto text-xs md:text-xl md:px-6 md:py-4"><%= data[i][2] %></td>
+          </tr> 
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+
+  
+  <footer class="bg-gray-800 text-white py-4 mt-20 flex justify-center space-x-4 pb-8 pt-8 overflow-hidden   ">
+    <a href="https://starwars.fandom.com/es/wiki/Star_Wars"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Star_Wars_Yellow_Logo.svg/634px-Star_Wars_Yellow_Logo.svg.png" alt="Logo de Star Wars" class="w-15 h-10"></a>
+    <a href="https://www.instagram.com/starwars/?hl=es"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/2048px-Instagram_logo_2016.svg.png" alt="Logo de Instagram" class="w-15 h-10"></a>
+  </footer>
+
+</body>
+
+</html>
